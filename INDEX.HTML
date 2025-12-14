@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ati Insyirah's Student Bento Grid Landing Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset and Font */
+        :root {
+            --color-white: #ffffff;
+            --color-light-grey: #f4f7fa;
+            --color-medium-grey: #e2e8f0;
+            --color-dark-grey: #334155;
+            --color-accent: #0f4c81; /* Deep Ocean Blue (Matching UMT Theme) */
+            --font-family-sans: 'Inter', sans-serif;
+            --border-radius: 12px;
+            --padding-base: 1.5rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family-sans);
+            background-color: var(--color-light-grey);
+            color: var(--color-dark-grey);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        /* Bento Grid Container */
+        .bento-grid {
+            display: grid;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop */
+            grid-template-rows: auto;
+        }
+
+        /* Card Styling */
+        .card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-medium-grey);
+            border-radius: var(--border-radius);
+            padding: var(--padding-base);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden; 
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent);
+        }
+        
+        .card-subtitle {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-dark-grey);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            color: var(--color-dark-grey);
+        }
+
+        /* Specific Card Sizing (Desktop Layout - 4 Columns) */
+        .card-1 { grid-column: span 2; grid-row: span 2; }
+        .card-2 { grid-column: span 1; }
+        .card-3 { grid-column: span 1; grid-row: span 1; }
+        .card-4 { grid-column: span 2; }
+        .card-5 { grid-column: span 1; }
+        .card-6 { grid-column: 1 / -1; }
+
+        /* Card Specific Content Styles */
+
+        /* Card 1: Profile */
+        .profile-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-dark-grey);
+            line-height: 1.1;
+        }
+
+        .profile-info p {
+            font-size: 1.25rem;
+            color: var(--color-dark-grey);
+            margin-bottom: 1rem;
+        }
+
+        .profile-tagline {
+            font-style: italic;
+            color: var(--color-accent);
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto; 
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-medium-grey);
+        }
+
+        .social-links a {
+            text-decoration: none;
+            color: var(--color-accent);
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: var(--color-dark-grey);
+        }
+
+        /* Card 2: Location/Time */
+        .location-info .time {
+            /* Using the current time context for Kuala Nerus/Terengganu */
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+        
+        /* Card 3: Tech Stack/Subjects */
+        .subject-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .subject-list li {
+            padding: 0.25rem 0;
+            border-bottom: 1px dotted var(--color-medium-grey);
+        }
+
+        .subject-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Card 6: Playlist */
+        .playlist-placeholder {
+            min-height: 80px;
+            background-color: var(--color-light-grey);
+            border: 1px dashed var(--color-medium-grey);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-dark-grey);
+            font-style: italic;
+        }
+
+
+        /* Responsive Design - Mobile (Stacked Vertical) */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr; /* Single column on mobile */
+                gap: 0.75rem;
+            }
+
+            /* Reset all grid spans to full width (1 column) */
+            .card-1, .card-2, .card-3, .card-4, .card-5, .card-6 {
+                grid-column: span 1;
+                grid-row: auto;
+            }
+
+            /* Adjust padding and font sizes for mobile */
+            .card {
+                padding: 1rem;
+            }
+
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+
+            .profile-info p {
+                font-size: 1.1rem;
+            }
+
+            .location-info .time {
+                font-size: 1.5rem;
+            }
+            
+            .card-title {
+                font-size: 1.15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bento-grid">
+
+        <div class="card card-1">
+            <div class="profile-info">
+                <h1>ATI INSYIRAH BINTI MOHAMED AKMAR</h1>
+                <p>Program: **Food Science** | Year: **Year 1**</p>
+                <div class="profile-tagline">'Innovating food safety.'</div>
+            </div>
+            <div class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">UMT Portal</a>
+            </div>
+        </div>
+
+        <div class="card card-2">
+            <div>
+                <div class="card-title">Current Location</div>
+                <div class="location-info card-content">
+                    <p>Campus: **UMT, Kuala Nerus**</p>
+                    <div class="time">2:47 PM</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-5">
+            <div>
+                <div class="card-title">Campus Activity</div>
+                <div class="card-content">
+                    <p>Hobby: **Evening walks at Pantai UMT**</p>
+                    <p>Focus: Stress relief and inspiration.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-3">
+            <div>
+                <div class="card-title">Core Modules & Skills</div>
+                <ul class="subject-list card-content">
+                    <li>Food Chemistry</li>
+                    <li>Microbiology</li>
+                    <li>**Data Management (Excel)**</li>
+                    <li>Lab Analysis Techniques</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card card-4">
+            <div>
+                <div class="card-title">Recent Case Study</div>
+                <div class="card-subtitle">Title: **Starch Gelatinization in Local Kuih**</div>
+                <div class="card-content">
+                    <p>Description: Analyzing texture profiles of *Kuih Lapis* using a Texture Analyzer (TA-XT2i) to determine the optimal starch-to-water ratio for desired gel characteristics and mouthfeel. 
+
+[Image of starch gelatinization diagram]
+</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card card-6">
+            <div>
+                <div class="card-title">Study Playlist</div>
+                <div class="playlist-placeholder">
+                    [Placeholder for Lo-Fi Beats or Scientific Lecture Playlist]
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
